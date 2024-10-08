@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>回答 1</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        font-family: Arial, sans-serif;
+        flex-direction: column;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      button {
+        margin-top: 20px;
+        padding: 10px;
+        font-size: 1em;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="answer-container">
+      <img id="answer-image" alt="選択された画像" />
+      <p id="answer-text"></p>
+    </div>
+    <button onclick="goToNextQuestion()">進む</button>
+
+    <script>
+      // 選択肢に基づいて画像と文章を表示する
+      const selectedChoice = localStorage.getItem("selectedChoice1");
+      const answerImage = document.getElementById("answer-image");
+      const answerText = document.getElementById("answer-text");
+
+      // 選択肢に応じた画像と文章
+      const answers = {
+        choice1: {
+          image: "images/answer1.jpg",
+          text: "あなたは選択肢 1 を選びました。",
+        },
+        choice2: {
+          image: "images/answer2.jpg",
+          text: "あなたは選択肢 2 を選びました。",
+        },
+        choice3: {
+          image: "images/answer3.jpg",
+          text: "あなたは選択肢 3 を選びました。",
+        },
+      };
+
+      // 選んだ選択肢に応じた内容を表示
+      if (selectedChoice && answers[selectedChoice]) {
+        answerImage.src = answers[selectedChoice].image;
+        answerText.textContent = answers[selectedChoice].text;
+      } else {
+        answerText.textContent = "選択肢がありません。";
+      }
+
+      // 次の質問へ移動
+      function goToNextQuestion() {
+        window.location.href = "Q3.html";
+      }
+    </script>
+  </body>
+</html>
