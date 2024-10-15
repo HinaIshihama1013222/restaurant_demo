@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>終了ページ</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        color: #333;
+      }
+      img {
+        max-width: 100px;
+        height: auto;
+        margin: 20px 0;
+      }
+      .buttons {
+        margin-top: 20px;
+      }
+      button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        margin: 10px;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>結果</h1>
+    <img id="result-image" src="" alt="結果画像" />
+    <p id="result-message"></p>
+
+    <div class="buttons">
+      <button id="retry-button">もう一度</button>
+      <button id="exit-button">ゲームを終了する</button>
+    </div>
+
+    <script>
+      // 正しい答えのパターン
+      const correctAnswers = ["1", "3", "3"];
+
+      // localStorage から選択した内容を取得
+      const selectedChoice1 = localStorage.getItem("selectedChoice1");
+      const selectedChoice2 = localStorage.getItem("selectedChoice2");
+      const selectedChoice3 = localStorage.getItem("selectedChoice3");
+
+      const selectedChoices = [
+        selectedChoice1,
+        selectedChoice2,
+        selectedChoice3,
+      ];
+
+      // 一致している答えの数をカウント
+      let matchCount = 0;
+      for (let i = 0; i < correctAnswers.length; i++) {
+        if (selectedChoices[i] === correctAnswers[i]) {
+          matchCount++;
+        }
+      }
+
+      // 合致した数に応じてメッセージと画像を表示
+      const resultMessage = document.getElementById("result-message");
+      const resultImage = document.getElementById("result-image");
+
+      switch (matchCount) {
+        case 3:
+          resultMessage.textContent = "全て正解です！素晴らしい！";
+          resultImage.src = "correct-all.png"; // 全て正解した場合の画像
+          break;
+        case 2:
+          resultMessage.textContent = "2つ正解です。あと少し！";
+          resultImage.src = "correct-two.png"; // 2つ正解した場合の画像
+          break;
+        case 1:
+          resultMessage.textContent = "1つ正解です。頑張りましょう！";
+          resultImage.src = "correct-one.png"; // 1つ正解した場合の画像
+          break;
+        default:
+          resultMessage.textContent = "残念ながら正解はありませんでした。";
+          resultImage.src = "incorrect.png"; // 正解がない場合の画像
+      }
+
+      // ボタンのイベントリスナーを追加
+      document
+        .getElementById("retry-button")
+        .addEventListener("click", function () {
+          localStorage.clear(); // データをクリア
+          window.location.href = "index.html"; // index.htmlに戻る
+        });
+
+      document
+        .getElementById("exit-button")
+        .addEventListener("click", function () {
+          localStorage.clear(); // データをクリア
+          window.close(); // ウィンドウを閉じる
+        });
+
+      // ページを閉じる際にデータをクリア
+      window.addEventListener("beforeunload", function () {
+        localStorage.clear();
+      });
+    </script>
+  </body>
+</html>
