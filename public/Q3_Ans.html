@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>回答 1</title>
+    <title>フレンチコース体験</title>
     <style>
       body {
         display: flex;
@@ -35,7 +35,7 @@
 
     <script>
       // 選択肢に基づいて画像と文章を表示する
-      const selectedChoice = localStorage.getItem("selectedChoice1");
+      const selectedChoice = localStorage.getItem("selectedChoice3");
       const answerImage = document.getElementById("answer-image");
       const answerText = document.getElementById("answer-text");
 
@@ -43,15 +43,15 @@
       const answers = {
         choice1: {
           image: "images/image_badchoice.jpg",
-          text: "フォアグラのエスプーマを鴨肉にたっぷり塗ることで、フォアグラの味が強すぎて鴨肉本来の旨味が感じにくくなる。濃厚すぎて途中で少し飽きがきてしまい、赤ワインのジュの効果も薄れてしまう。​",
+          text: "キャラメリゼの部分を割らずに食べた結果、クレームとコンポートの滑らかさは楽しめたが、キャラメリゼの食感と一緒に楽しむことができず、口の中でのコントラストを感じることができなかった。​",
         },
         choice2: {
-          image: "images/image_goodchoice.jpg",
-          text: "鴨胸肉のジューシーさを一口一口堪能しながら、フォアグラのエスプーマを少量ずつ付けることで、鴨肉の濃厚さが一層引き立つ。赤ワインのジュを軽くかけると、味の深みが増し、複雑な味わいが広がる。",
+          image: "images/image_badchoice.jpg",
+          text: "バニラのクレームを先に楽しみ、その後コンポートを加えたが、クレームだけで食べた部分では少し甘さが強く、後から酸味を加えたときにはバランスが少し崩れてしまった。全体としての調和がいまいち感じられない。",
         },
         choice3: {
-          image: "images/image_badchoice.jpg",
-          text: "フォアグラのエスプーマを使わず、赤ワインのジュだけで鴨肉を楽しんだが、旨味がシンプルすぎて味の変化に乏しく、少し単調に感じる。後でエスプーマを試したが、別々に食べたため、鴨肉とフォアグラの相乗効果を最大限に味わう機会を逃してしまう。",
+          image: "images/image_goodchoice.jpg",
+          text: "スプーンでパリッとしたキャラメリゼを割り、下に隠れたクレームとフランボワーズのコンポートを一緒に楽しむ。滑らかなバニラとフランボワーズの酸味が絶妙なバランスで口の中に広がり、心地よい甘酸っぱさを堪能する。",
         },
       };
 
