@@ -45,22 +45,22 @@
       const answers = {
         choice1: {
           image: "images/image_goodchoice.jpg",
-          text: "最初にサーモンのタルタルを一口。その新鮮さとトリュフオイルの香りが一体となり、深い味わいを堪能する。その後、アボカドムースを少しずつ加え、クリーミーさとタルタルの食感のバランスを味わう。",
+          text: "最初にサーモンのタルタルを一口。<br>その新鮮さとトリュフオイルの香りが一体となり、深い味わいを堪能する。<br>その後、アボカドムースを少しずつ加え、クリーミーさとタルタルの食感のバランスを味わう。",
         },
         choice2: {
           image: "images/image_badchoice.jpg",
-          text: "サーモンのタルタルとアボカドムースを同じ量で混ぜた結果、味が調和せず、アボカドのクリーミーさが強すぎてタルタルの繊細な味わいが薄れてしまう。結果、両者の風味が均等に引き立つことなく、少しぼやけた印象を受ける。",
+          text: "サーモンのタルタルとアボカドムースを同じ量で混ぜた結果、味が調和せず、アボカドのクリーミーさが強すぎてタルタルの繊細な味わいが薄れてしまう。<br>結果、両者の風味が均等に引き立つことなく、少しぼやけた印象を受ける。",
         },
         choice3: {
           image: "images/image_badchoice.jpg",
-          text: "アボカドムースを一気に全てのせて食べることで、​サーモンの新鮮な風味がアボカドに圧倒され、​トリュフオイルの香りも感じにくくなる。​口の中での味わいの変化を楽しむ余地がなくなり、​全体的に平坦な味わいになる。​",
+          text: "アボカドムースを一気に全てのせて食べることで、​サーモンの新鮮な風味がアボカドに圧倒され、​トリュフオイルの香りも感じにくくなる。<br>​口の中での味わいの変化を楽しむ余地がなくなり、​全体的に平坦な味わいになる。​",
         },
       };
 
       // 選んだ選択肢に応じた内容を表示
       if (selectedChoice && answers[selectedChoice]) {
         answerImage.src = answers[selectedChoice].image;
-        answerText.textContent = answers[selectedChoice].text;
+        answerText.innerHTML = answers[selectedChoice].text;
       } else {
         answerText.textContent = "選択肢がありません。";
       }

@@ -49,18 +49,18 @@
         },
         choice2: {
           image: "images/image_badchoice.jpg",
-          text: "バニラのクレームを先に楽しみ、その後コンポートを加えたが、クレームだけで食べた部分では少し甘さが強く、後から酸味を加えたときにはバランスが少し崩れてしまった。全体としての調和がいまいち感じられない。",
+          text: "バニラのクレームを先に楽しみ、その後コンポートを加えたが、クレームだけで食べた部分では少し甘さが強く、後から酸味を加えたときにはバランスが少し崩れてしまった。<br>全体としての調和がいまいち感じられない。",
         },
         choice3: {
           image: "images/image_goodchoice.jpg",
-          text: "スプーンでパリッとしたキャラメリゼを割り、下に隠れたクレームとフランボワーズのコンポートを一緒に楽しむ。滑らかなバニラとフランボワーズの酸味が絶妙なバランスで口の中に広がり、心地よい甘酸っぱさを堪能する。",
+          text: "スプーンでパリッとしたキャラメリゼを割り、下に隠れたクレームとフランボワーズのコンポートを一緒に楽しむ。<br>滑らかなバニラとフランボワーズの酸味が絶妙なバランスで口の中に広がり、心地よい甘酸っぱさを堪能する。",
         },
       };
 
       // 選んだ選択肢に応じた内容を表示
       if (selectedChoice && answers[selectedChoice]) {
         answerImage.src = answers[selectedChoice].image;
-        answerText.textContent = answers[selectedChoice].text;
+        answerText.innerHTML = answers[selectedChoice].text;
       } else {
         answerText.textContent = "選択肢がありません。";
       }

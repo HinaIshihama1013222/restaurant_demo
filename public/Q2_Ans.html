@@ -45,22 +45,22 @@
       const answers = {
         choice1: {
           image: "images/image_badchoice.jpg",
-          text: "フォアグラのエスプーマを鴨肉にたっぷり塗ることで、フォアグラの味が強すぎて鴨肉本来の旨味が感じにくくなる。濃厚すぎて途中で少し飽きがきてしまい、赤ワインのジュの効果も薄れてしまう。​",
+          text: "フォアグラのエスプーマを鴨肉にたっぷり塗ることで、フォアグラの味が強すぎて鴨肉本来の旨味が感じにくくなる。<br>濃厚すぎて途中で少し飽きがきてしまい、赤ワインのジュの効果も薄れてしまう。​",
         },
         choice2: {
           image: "images/image_badchoice.jpg",
-          text: "フォアグラのエスプーマを使わず、赤ワインのジュだけで鴨肉を楽しんだが、旨味がシンプルすぎて味の変化に乏しく、少し単調に感じる。後でエスプーマを試したが、別々に食べたため、鴨肉とフォアグラの相乗効果を最大限に味わう機会を逃してしまう。",
+          text: "フォアグラのエスプーマを使わず、赤ワインのジュだけで鴨肉を楽しんだが、旨味がシンプルすぎて味の変化に乏しく、少し単調に感じる。<br>後でエスプーマを試したが、別々に食べたため、鴨肉とフォアグラの相乗効果を最大限に味わう機会を逃してしまう。",
         },
         choice3: {
           image: "images/image_goodchoice.jpg",
-          text: "鴨胸肉のジューシーさを一口一口堪能しながら、フォアグラのエスプーマを少量ずつ付けることで、鴨肉の濃厚さが一層引き立つ。赤ワインのジュを軽くかけると、味の深みが増し、複雑な味わいが広がる。",
+          text: "鴨胸肉のジューシーさを一口一口堪能しながら、フォアグラのエスプーマを少量ずつ付けることで、鴨肉の濃厚さが一層引き立つ。<br>赤ワインのジュを軽くかけると、味の深みが増し、複雑な味わいが広がる。",
         },
       };
 
       // 選んだ選択肢に応じた内容を表示
       if (selectedChoice && answers[selectedChoice]) {
         answerImage.src = answers[selectedChoice].image;
-        answerText.textContent = answers[selectedChoice].text;
+        answerText.innerHTML = answers[selectedChoice].text;
       } else {
         answerText.textContent = "選択肢がありません。";
       }

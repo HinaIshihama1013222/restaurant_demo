@@ -13,6 +13,7 @@
         margin: 0;
         font-family: Arial, sans-serif;
         flex-direction: column;
+        position: relative; /* 音声アイコンの位置指定のために追加 */
       }
       img {
         display: block;
@@ -25,10 +26,35 @@
         font-size: 1em;
         cursor: pointer;
         margin-top: 20px;
+        display: none; /* 初期状態では非表示 */
+      }
+      #audio-icon {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 50px;
+        display: none; /* 初期状態では非表示 */
+      }
+      .blinking {
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
       }
     </style>
   </head>
   <body>
+    <!-- 音声アイコン -->
+    <img id="audio-icon" src="images/audio_icon.png" alt="音声アイコン" />
+
     <!-- 画像を表示するボックス -->
     <div id="image-box">
       <img src="images/image_menu2.jpg" alt="質問の画像" />
@@ -36,7 +62,7 @@
 
     <!-- 音声再生 -->
     <audio id="audio" autoplay>
-      <source src="audio\02_鴨胸肉のロティ.wav" type="audio/wav" />
+      <source src="audio/02_鴨胸肉のロティ.wav" type="audio/wav" />
       あなたのブラウザは音声再生をサポートしていません。
     </audio>
 
@@ -44,17 +70,40 @@
     <button id="next-btn">選択に進む</button>
 
     <script>
-      // 「選択に進む」ボタンがクリックされたときの処理
-      document
-        .getElementById("next-btn")
-        .addEventListener("click", function () {
-          // Select_Q1.html へ遷移
-          window.location.href = "Q2_Select.html";
-        });
+      // 音声アイコンと点滅アニメーション関連の処理
+      const audioIcon = document.getElementById("audio-icon");
+      const audioPlayer = document.getElementById("audio");
+      const nextButton = document.getElementById("next-btn");
 
-      // 音声を再生する処理
-      const audio = document.getElementById("audio");
-      audio.play();
+      // アイコン点滅開始
+      function startBlinkingIcon() {
+        audioIcon.style.display = "block"; // アイコン表示
+        audioIcon.classList.add("blinking"); // 点滅開始
+      }
+
+      // アイコン点滅停止
+      function stopBlinkingIcon() {
+        audioIcon.style.display = "none"; // アイコン非表示
+        audioIcon.classList.remove("blinking"); // 点滅終了
+      }
+
+      // 音声再生終了時のイベントリスナー
+      audioPlayer.addEventListener("ended", () => {
+        // アイコンの点滅停止
+        stopBlinkingIcon();
+        // ボタンを表示
+        nextButton.style.display = "block";
+      });
+
+      // 「選択に進む」ボタンがクリックされたときの処理
+      nextButton.addEventListener("click", function () {
+        // Q1_Select.html へ遷移
+        window.location.href = "Q2_Select.html";
+      });
+
+      // 初回の音声再生とアイコン点滅開始
+      audioPlayer.play();
+      startBlinkingIcon();
     </script>
   </body>
 </html>
