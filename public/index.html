@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>フレンチコース体験</title>
+    <title>フレンチレストラン</title>
     <style>
       body {
         display: flex;
@@ -13,101 +13,66 @@
         margin: 0;
         font-family: Arial, sans-serif;
         flex-direction: column;
+        background-image: url("Images/image_restaurant.jpg"); /* 背景画像 */
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
       }
-      img {
-        display: block;
-        margin: 10px auto;
-        max-width: 90%;
-        height: auto;
-      }
-      #text-box {
-        width: 90%;
+      h1 {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6); /* 半透明の背景 */
+        padding: 2rem;
+        border-radius: 0.5rem;
+        font-size: 2.5rem; /* フォントサイズを相対的に設定 */
         text-align: center;
-        font-size: 1.2em;
-        margin-bottom: 20px;
+        width: 90%; /* モニターに応じて幅を自動調整 */
+        max-width: 1200px;
       }
-      .button-container {
-        display: flex;
-        justify-content: space-between;
-        width: 200px;
+      h3 {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.6);
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        font-size: 1.8rem;
+        text-align: center;
+        width: 90%;
+        max-width: 1200px;
       }
       button {
-        padding: 10px 20px;
-        font-size: 1em;
+        padding: 1.5rem 3rem;
+        font-size: 1.5rem; /* ボタンのフォントサイズを相対的に */
         cursor: pointer;
+        margin: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #ffcc00; /* 明るい黄色 */
+        color: #333;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        max-width: 400px; /* ボタンの最大幅を設定 */
+        width: 90%; /* ボタンの幅は画面サイズに応じて調整 */
+      }
+      button:hover {
+        background-color: #ff9900; /* ホバー時に色を少し濃く */
+        transform: scale(1.05); /* 少し拡大する */
       }
     </style>
   </head>
   <body>
-    <!-- 画像を表示するボックス -->
-    <div id="image-box">
-      <img
-        id="display-image"
-        src="images\image_restaurant.jpg"
-        alt="表示中の画像"
-      />
-    </div>
-
-    <!-- テキストを表示するボックス -->
-    <div id="text-box">
-      あなたは著名なグルメライターとして、人目を避けて高級レストランに訪れました。​
-    </div>
-
-    <!-- ボタンコンテナ -->
-    <div class="button-container">
-      <button id="prev-btn" disabled>戻る</button>
-      <button id="next-btn">進む</button>
-    </div>
+    <h1>フレンチレストランへようこそ！</h1>
+    <h3>聞きたい音声を選んでください。</h3>
+    <button onclick="selectMode(1)">Mode 1 聞こえにくい音声➀</button>
+    <button onclick="selectMode(2)">Mode 2 聞こえにくい音声②</button>
+    <button onclick="selectMode(3)">Mode 3 加工前音声（正解）</button>
 
     <script>
-      // 画像とテキストのデータ
-      const texts = [
-        "あなたは著名なグルメライターとして、あなたは人目を避けて高級レストランに訪れました。​",
-        "執事が料理をサーブし、各料理の楽しみ方を説明します。",
-      ];
-
-      const images = [
-        "images/image_restaurant.jpg", // 最初の画像ファイル名
-        "images/image_serve.jpg", // 2番目の画像ファイル名
-      ];
-
-      let currentTextIndex = 0;
-
-      const textBox = document.getElementById("text-box");
-      const imageBox = document.getElementById("display-image");
-      const prevBtn = document.getElementById("prev-btn");
-      const nextBtn = document.getElementById("next-btn");
-
-      // ボタンの状態更新
-      function updateButtons() {
-        prevBtn.disabled = currentTextIndex === 0;
-        nextBtn.textContent =
-          currentTextIndex === texts.length - 1 ? "次へ" : "進む";
+      function selectMode(mode) {
+        // 選択されたモードをローカルストレージに保存
+        localStorage.setItem("selectedMode", mode);
+        //alert(`モード ${mode} を選択しました。`);
+        // メインページに遷移
+        window.location.href = "main.html";
       }
-
-      // 「進む」ボタンのクリックイベント
-      nextBtn.addEventListener("click", () => {
-        if (currentTextIndex < texts.length - 1) {
-          currentTextIndex++;
-          textBox.textContent = texts[currentTextIndex];
-          imageBox.src = images[currentTextIndex];
-          updateButtons();
-        } else {
-          window.location.href = "Q1.html"; // 次のページに遷移
-        }
-      });
-
-      // 「戻る」ボタンのクリックイベント
-      prevBtn.addEventListener("click", () => {
-        if (currentTextIndex > 0) {
-          currentTextIndex--;
-          textBox.textContent = texts[currentTextIndex];
-          imageBox.src = images[currentTextIndex];
-          updateButtons();
-        }
-      });
-
-      updateButtons(); // 初期状態を更新
     </script>
   </body>
 </html>

@@ -25,7 +25,7 @@
         font-size: 1em;
         cursor: pointer;
         margin-top: 20px;
-        display: none;
+        display: none; /* 初期状態では非表示 */
       }
       #audio-icon {
         position: absolute;
@@ -34,9 +34,11 @@
         width: 50px;
         display: none; /* 初期状態では非表示 */
       }
+
       .blinking {
         animation: blink 1s infinite;
       }
+
       @keyframes blink {
         0% {
           opacity: 1;
@@ -52,7 +54,8 @@
   </head>
   <body>
     <!-- 音声アイコン -->
-    <img id="audio-icon" src="images/audio_icon.png" alt="音声アイコン" />
+    <img id="audio-icon" src="Images/audio_icon.png" alt="音声アイコン" />
+
     <!-- 画像を表示するボックス -->
     <div id="image-box">
       <img src="images/image_menu3.jpg" alt="質問の画像" />
@@ -60,10 +63,7 @@
 
     <!-- 音声再生 -->
     <audio id="audio" autoplay>
-      <source
-        src="audio\03_バニラビーンズを贅沢に使ったクレームブリュレ フランボワーズのコンポートを添えて.wav"
-        type="audio/wav"
-      />
+      <source id="audio-source" src="" type="audio/wav" />
       あなたのブラウザは音声再生をサポートしていません。
     </audio>
 
@@ -71,21 +71,47 @@
     <button id="next-btn">選択に進む</button>
 
     <script>
-      // 音声アイコンと点滅アニメーション関連の処理
+      // ローカルストレージから選択されたモードを取得
+      const selectedMode = localStorage.getItem("selectedMode");
+
+      // 数字からアルファベット(S, F, A)に変換
+      let modeLetter;
+      switch (selectedMode) {
+        case "1":
+          modeLetter = "S";
+          break;
+        case "2":
+          modeLetter = "F";
+          break;
+        case "3":
+          modeLetter = "A";
+          break;
+        default:
+          modeLetter = "S"; // デフォルトでSに設定
+      }
+
+      // 音声ファイルのパスをモードに基づいて設定
+      const audioFilePath = `audio/res_03_${modeLetter}.wav`;
+
+      // 音声ソース要素を取得し、src 属性を設定
+      const audioSource = document.getElementById("audio-source");
+      audioSource.src = audioFilePath;
+
+      // 音声アイコンの表示と点滅アニメーション関連の処理
       const audioIcon = document.getElementById("audio-icon");
       const audioPlayer = document.getElementById("audio");
       const nextButton = document.getElementById("next-btn");
 
-      // アイコン点滅開始
+      // 音声再生開始時にアイコンを点滅させる関数
       function startBlinkingIcon() {
-        audioIcon.style.display = "block"; // アイコン表示
-        audioIcon.classList.add("blinking"); // 点滅開始
+        audioIcon.style.display = "block";
+        audioIcon.classList.add("blinking");
       }
 
-      // アイコン点滅停止
+      // 音声再生終了時にアイコンを非表示にする関数
       function stopBlinkingIcon() {
-        audioIcon.style.display = "none"; // アイコン非表示
-        audioIcon.classList.remove("blinking"); // 点滅終了
+        audioIcon.style.display = "none";
+        audioIcon.classList.remove("blinking");
       }
 
       // 音声再生終了時のイベントリスナー

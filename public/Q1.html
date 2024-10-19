@@ -63,10 +63,7 @@
 
     <!-- 音声再生 -->
     <audio id="audio" autoplay>
-      <source
-        src="audio/01_トリュフ香るサーモンのタルタル アボカドムースと共に.wav"
-        type="audio/wav"
-      />
+      <source id="audio-source" src="" type="audio/wav" />
       あなたのブラウザは音声再生をサポートしていません。
     </audio>
 
@@ -74,9 +71,33 @@
     <button id="next-btn">選択に進む</button>
 
     <script>
-      // 音声アイコンの表示と点滅アニメーション関連の処理
+      // ローカルストレージから選択されたモードを取得
+      const selectedMode = localStorage.getItem("selectedMode");
 
-      // アイコン要素の取得
+      // 数字からアルファベット(S, F, A)に変換
+      let modeLetter;
+      switch (selectedMode) {
+        case "1":
+          modeLetter = "S";
+          break;
+        case "2":
+          modeLetter = "F";
+          break;
+        case "3":
+          modeLetter = "A";
+          break;
+        default:
+          modeLetter = "S"; // デフォルトでSに設定
+      }
+
+      // 音声ファイルのパスをモードに基づいて設定
+      const audioFilePath = `audio/res_01_${modeLetter}.wav`;
+
+      // 音声ソース要素を取得し、src 属性を設定
+      const audioSource = document.getElementById("audio-source");
+      audioSource.src = audioFilePath;
+
+      // 音声アイコンの表示と点滅アニメーション関連の処理
       const audioIcon = document.getElementById("audio-icon");
       const audioPlayer = document.getElementById("audio");
       const nextButton = document.getElementById("next-btn");
